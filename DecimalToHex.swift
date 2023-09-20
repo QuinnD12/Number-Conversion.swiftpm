@@ -1,10 +1,3 @@
-//
-//  DecimalToHex.swift
-//  Number Conversion
-//
-//  Created by Quinn B. Davis on 9/18/23.
-//
-
 import SwiftUI
 
 func hexFormat(_ digit: String) -> String {
@@ -28,7 +21,8 @@ func hexFormat(_ digit: String) -> String {
 
 func decimalToHex(_ dec: Int) -> String {
     var hex = ""
-   
+    let dec = abs(dec)
+    
     if dec != 0 {
         hex = decimalToHex(Int(floor(Double(dec / 16)))) + hexFormat(String(Int(dec % 16)))
     }
@@ -52,7 +46,10 @@ struct DecimalToHex: View {
                     .opacity(0.25)
                     .foregroundColor(.black)
                 
-                TextField("Enter Decimal Number", text: $input)
+                TextField("Enter Decimal Number", text: Binding(
+                    get: { input },
+                    set: { input = (Int($0) ?? 0) == 0 ? "" : $0}
+                ))
                     .frame(width: 300, height: 40)
                     .padding(45)
                     .font(.system(size: 20, weight: .bold, design: .rounded))
