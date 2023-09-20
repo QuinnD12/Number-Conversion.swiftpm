@@ -40,6 +40,7 @@ struct DecimalToHex: View {
             Text("Decimal To Hexadecimal")
                 .font(.system(size: 29, weight: .black, design: .rounded))
                 .padding()
+                .padding(.top, 50)
             
             ZStack {
                 RoundedRectangle(cornerRadius: 45)

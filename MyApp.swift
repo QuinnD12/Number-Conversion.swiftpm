@@ -35,9 +35,9 @@ struct MyApp: App {
                         
                         Spacer()
                     }
-                }
+                }.accentColor(Color(white: 0.35))
             } else {
-                // Fallback on earlier versions
+                Text("Version Unsupported")
             }
         }
     }
