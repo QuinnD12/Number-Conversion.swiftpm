@@ -4,7 +4,7 @@ import SwiftUI
 struct MyApp: App {
     var body: some Scene {
         WindowGroup {
-            if #available(macCatalyst 16.0, *) {
+            if #available(iOS 17.0, *) {
                 NavigationStack {
                     VStack {
                         Text("Home")
@@ -37,7 +37,7 @@ struct MyApp: App {
                     }
                 }
             } else {
-                Text("Version Unsupported")
+                // Fallback on earlier versions
             }
         }
     }

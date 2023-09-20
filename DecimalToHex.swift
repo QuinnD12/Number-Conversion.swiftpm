@@ -30,6 +30,7 @@ func decimalToHex(_ dec: Int) -> String {
     return hex
 }
 
+@available(iOS 17.0, *)
 struct DecimalToHex: View {
     @State var input = ""
     @State var output = ""
@@ -46,13 +47,13 @@ struct DecimalToHex: View {
                     .opacity(0.25)
                     .foregroundColor(.black)
                 
-                TextField("Enter Decimal Number", text: Binding(
-                    get: { input },
-                    set: { input = (Int($0) ?? 0) == 0 ? "" : $0}
-                ))
+                TextField("Enter Decimal Number", text: $input)
                     .frame(width: 300, height: 40)
                     .padding(45)
                     .font(.system(size: 20, weight: .bold, design: .rounded))
+                    .onChange(of: input) {
+                        input = (Int(input) ?? 0) == 0 ? "" : input
+                    }
             }
             Button {
                 output = decimalToHex(Int(input)!)
@@ -78,6 +79,10 @@ struct DecimalToHex: View {
 
 struct DecimalToHex_Previews: PreviewProvider {
     static var previews: some View {
-        DecimalToHex()
+        if #available(iOS 17.0, *) {
+            DecimalToHex()
+        } else {
+           Text("Version Unsupported")
+        }
     }
 }
