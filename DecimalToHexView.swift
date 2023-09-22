@@ -57,7 +57,9 @@ struct DecimalToHex: View {
                     }
             }
             Button {
-                output = decimalToHex(Int(input)!)
+                if input != "" {
+                    output = decimalToHex(Int(input)!)
+                }
             } label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 45)
