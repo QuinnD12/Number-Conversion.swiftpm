@@ -52,7 +52,7 @@ struct DecimalToHex: View {
                     .frame(width: 300, height: 40)
                     .padding(45)
                     .font(.system(size: 20, weight: .bold, design: .rounded))
-                    .onChange(of: input) {
+                    .onChange(of: input) { _ in
                         input = (Int(input) ?? 0) == 0 ? "" : input
                     }
             }
