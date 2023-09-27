@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct HexToDecimal: View {
+struct BinaryToDecimal: View {
     @State var input = ""
     @State var output = ""
     
     var body: some View {
         VStack {
-            Text("Hexadecimal To Decimal")
+            Text("Binary To Decimal")
                 .font(.system(size: 29, weight: .black, design: .rounded))
                 .padding()
                 .padding(.top, 50)
@@ -24,23 +24,22 @@ struct HexToDecimal: View {
                     .opacity(0.25)
                     .foregroundColor(.black)
                 
-                TextField("Enter Hexadecimal Number", text: $input)
+                TextField("Enter Binary Number", text: $input)
                     .frame(width: 300, height: 40)
                     .padding(45)
                     .font(.system(size: 20, weight: .bold, design: .rounded))
                     .onChange(of: input) { _ in
-                        for i in input.uppercased() {
-                            if (Int(String(i)) ?? 0) == 0 {
-                                if !(i == "A" || i == "B" || i == "C" || i == "D" || i == "E" || i == "F") {
-                                    input = ""
-                                }
+                        for i in input {
+                            let testVal = Int(String(i)) ?? 3
+                            if !(testVal == 0 || testVal == 1) {
+                                input = ""
                             }
                         }
                     }
             }
             Button {
                 if input != "" {
-                    output = String(hexToDecimal(input.uppercased()))
+                    output = String(binToDecimal(input))
                 }
             } label: {
                 ZStack {
@@ -62,4 +61,5 @@ struct HexToDecimal: View {
         }
     }
 }
+
 

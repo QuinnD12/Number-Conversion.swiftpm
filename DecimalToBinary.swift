@@ -1,46 +1,32 @@
-//
-//  HexToDecimalView.swift
-//  Number Conversion
-//
-//  Created by Quinn B. Davis on 9/22/23.
-//
-
 import SwiftUI
 
-struct HexToDecimal: View {
-    @State var input = ""
+struct DecimalToBinary: View {
     @State var output = ""
+    @State var input = ""
     
     var body: some View {
         VStack {
-            Text("Hexadecimal To Decimal")
+            Text("Decimal To Binary")
                 .font(.system(size: 29, weight: .black, design: .rounded))
                 .padding()
                 .padding(.top, 50)
-            
             ZStack {
                 RoundedRectangle(cornerRadius: 45)
                     .frame(width: 350, height: 60)
                     .opacity(0.25)
                     .foregroundColor(.black)
-                
-                TextField("Enter Hexadecimal Number", text: $input)
+            
+                TextField("Enter Decimal Number", text: $output)
                     .frame(width: 300, height: 40)
                     .padding(45)
                     .font(.system(size: 20, weight: .bold, design: .rounded))
-                    .onChange(of: input) { _ in
-                        for i in input.uppercased() {
-                            if (Int(String(i)) ?? 0) == 0 {
-                                if !(i == "A" || i == "B" || i == "C" || i == "D" || i == "E" || i == "F") {
-                                    input = ""
-                                }
-                            }
-                        }
+                    .onChange(of: output) { _ in
+                        output = (Int(output) ?? 0) == 0 ? "" : output
                     }
             }
             Button {
-                if input != "" {
-                    output = String(hexToDecimal(input.uppercased()))
+                if output != "" {
+                    input = decToBin(Int(output)!)
                 }
             } label: {
                 ZStack {
@@ -53,13 +39,14 @@ struct HexToDecimal: View {
                 }
             }.padding()
             
-            Text(output)
+            Text(input)
                 .font(.system(size: 40, weight: .black, design: .rounded))
                 .padding(.top, 40)
             
-            
             Spacer()
+             
+        
+            
         }
     }
 }
-

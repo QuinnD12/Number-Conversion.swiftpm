@@ -1,35 +1,5 @@
 import SwiftUI
 
-func hexFormat(_ digit: String) -> String {
-    switch digit {
-        case "10":
-            return "A"
-        case "11":
-            return "B"
-        case "12":
-            return "C"
-        case "13":
-            return "D"
-        case "14":
-            return "E"
-        case "15":
-            return "F"
-        default:
-            return digit
-    }
-}
-
-func decimalToHex(_ dec: Int) -> String {
-    var hex = ""
-    let dec = abs(dec)
-    
-    if dec != 0 {
-        hex = decimalToHex(Int(floor(Double(dec / 16)))) + hexFormat(String(Int(dec % 16)))
-    }
-    
-    return hex
-}
-
 @available(iOS 17.0, *)
 struct DecimalToHex: View {
     @State var input = ""
@@ -72,20 +42,10 @@ struct DecimalToHex: View {
             }.padding()
             
             Text(output)
-                .font(.system(size: 30, weight: .black, design: .rounded))
-                .padding()
+                .font(.system(size: 40, weight: .black, design: .rounded))
+                .padding(.top, 40)
             
             Spacer()
-        }
-    }
-}
-
-struct DecimalToHex_Previews: PreviewProvider {
-    static var previews: some View {
-        if #available(iOS 17.0, *) {
-            DecimalToHex()
-        } else {
-           Text("Version Unsupported")
         }
     }
 }
